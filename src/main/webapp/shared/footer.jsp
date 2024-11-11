@@ -1,5 +1,6 @@
- <footer class="container">
-            <strong>&copy; 2024 - Nguyen Thanh Tu - 2321160028 </strong>
+ <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<footer class="container">
+            <strong>&copy; 2024 - Nguyễn Minh Quân - 2321160063 </strong>
         </footer>
 
         <!-- Optional JavaScript -->

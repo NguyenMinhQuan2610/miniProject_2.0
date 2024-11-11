@@ -46,7 +46,7 @@
         %>
         <tr>
             <td><%=x.getTenhoa()%></td>
-            <td><%=x.getGia()%></td>
+            <td><%=fmt.format(x.getGia())%></td>
             <td> <img src="assets/images/products/<%=x.getHinh()%>" style="width: 100px">  </td>
             <td><%=x.getMaloai()%></td>
             <td>
@@ -61,17 +61,23 @@
         %>
     </table>
 </div>
-<ul class="pagination justify-content-center">
-    <%
-        //Lấy tổng só trang từ servlet
-        int sumOfPage = (int) request.getAttribute("sumOfPage");
-        int pageIndex = (int) request.getAttribute("pageIndex");
-        for (int i = 1; i <= sumOfPage; i++) {
-    %>
-    <li class="page-item <%=pageIndex == i ? "active" : ""%>"><a class="page-link" href="ManagerProduct?page=<%=i%>"><%=i%></a></li>
+    <ul class="pagination justify-content-center">
         <%
-            }
+            int pagesum = (int) request.getAttribute("pagesum");
+            int pageIndex = (int) request.getAttribute("pageIndex");
         %>
-</ul>
+        <li class="page-item <%=pageIndex == 1 ? "disable" : ""%>"><a class="page-link" href="ManagerProduct?page=1">First</a></li>
+        <li class="page-item <%=pageIndex == 1 ? "disable" : ""%>"><a class="page-link" href="ManagerProduct?page=<%=pageIndex == pagesum ? pageIndex - 1 : pageIndex%>">Previous</a></li>
+
+        <%
+            for (int i = 1; i <= pagesum; i++) {
+        %>
+        <li class="page-item <%=pageIndex == i ? "active" : ""%> " ><a class="page-link" href="ManagerProduct?page=<%=i%>"><%=i%></a></li> 
+            <%
+                }
+            %>
+        <li class="page-item <%=pageIndex == pagesum ? "disable" : ""%>"><a class="page-link" href="ManagerProduct?page=<%=pageIndex < pagesum ? pageIndex + 1 : pageIndex%>">Next</a></li>
+        <li class="page-item <%=pageIndex == pagesum ? "disable" : ""%>"><a class="page-link" href="Manager Product?page=<%=pagesum %>">LAST</a></li>
+    </ul>
 
 <jsp:include page="../shared/footer.jsp" />

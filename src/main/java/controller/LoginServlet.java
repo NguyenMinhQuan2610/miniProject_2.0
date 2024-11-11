@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dao.TaiKhoanDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.taikhoan;
 
 /**
  *
@@ -37,7 +39,9 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         
         //b2. Xác thực thông tin
-        if(username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")){//thành công
+        TaiKhoanDAO tkDao=new TaiKhoanDAO();
+        taikhoan tk=tkDao.CheckLogin(username, password);
+        if(tk!=null){//thành công
             //lưu thông tin lịch sử (tài khoản xác thực thành công) vào session của người dùng
             HttpSession session = request.getSession();
             session.setAttribute("username", username);         

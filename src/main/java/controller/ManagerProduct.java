@@ -65,7 +65,7 @@ public class ManagerProduct extends HttpServlet {
                 }
                 //tính tổng số trang có thể có
                 int sumOfPage = (int) Math.ceil((double) hoaDAO.getAll().size()/pageSize);
-                request.setAttribute("sumOfPage", sumOfPage);
+                request.setAttribute("pagesum", sumOfPage);
                 request.setAttribute("pageIndex", pageIndex);
                 
                 request.setAttribute("dsHoa", hoaDAO.getByPage(pageIndex, pageSize));
